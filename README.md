@@ -1,45 +1,99 @@
 # .github
 Platform Overview
 
-Joinn is a Real World Asset (RWA) aggregation and tokenization platform designed to unify a fragmented market into a single, accessible hub. Through simple social logins, users can seamlessly create a non-custodial Joinn Smart Account and begin buying or selling on-chain RWAs from multiple issuers in one place. Users retain full ownership and control of their accounts and assets at all times, while our sponsored gas architecture enables gasless transactions—removing any need for blockchain expertise. Joinn is an on-chain RWA company committed to delivering seamless, global access to real-world asset investing for anyone with an internet connection. 
+# Joinn
 
-<img width="1285" height="719" alt="image" src="https://github.com/user-attachments/assets/eede294c-f333-4688-8ff0-ca3230e1e43a" />
+A web3 wealth management platform combining tokenized real-world asset investing with everyday spending through a VISA card.
 
-Flow of Funds Explanation: 
+[![Live App](https://img.shields.io/badge/app-joinn.io-blue)](https://app.joinn.io)
+[![React](https://img.shields.io/badge/react-18-61DAFB?logo=react)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/typescript-5-3178C6?logo=typescript)](https://www.typescriptlang.org)
+[![Vite](https://img.shields.io/badge/vite-646CFF?logo=vite)](https://vitejs.dev)
 
-1. Deposit Flow (User → Vault):
+## Overview
 
-- User deposits funds from their non custodial Joinn Smart Account into the Joinn Stock Token Vault
-- The Stock Token Vault has an automated strategy to buy and sell the relevant RWA in order to maintain a 90:10 ratio (RWA’s : USDC (reserves))
-- Funds from the Stock Token Vault are used to purchase stock tokens from the vault
-- The protocol then interacts with RWA Providers to acquire the necessary tokenized RWA’s
-- These tokens are acquired and stored in the relevant Stock Token Vault vault maintaining the target ratio
+Joinn is an RWA aggregation platform that unifies a fragmented tokenized asset market into a single, accessible hub. Users create non-custodial smart accounts through social login and gain access to institutional-quality RWA products across multiple EVM chains -- without needing blockchain expertise.
 
-2. Withdrawal Flow (Vault → User):  
+The platform pairs DeFi investing with real-world spending and a seamless web2 UX: invest in tokenized gold, corporate credit, treasury bills, and private credit vaults, then spend stablecoin balances directly with a Joinn Pay VISA card. Gasless transactions, cross-chain bridging, and an AI trading assistant make the experience seamless.
 
-a) Scenario 1 - Sufficient USDC Available in Stock Token Vault:
-- User requests to exchange their stock tokens for USDC
-- If there's enough USDC in the vault, the withdrawal processes immediately
-- After withdrawal, the system rebalances the vault back to 90:10 ratio by:
-    - Converting necessary RWA tokens through our RWA partner network to USDC
-    - Maintaining the target reserve ratio 
+Joinn is non-custodial and non-discretionary -- users retain full ownership and control of their assets at all times. The platform is a Progressive Web App installable on both mobile and desktop.
 
-b) Scenario 2 - Insufficient USDC Available to fulfill order:
+## Features
 
-- User requests withdrawal
-- System detects insufficient USDC in vault
-- User receives the total amount of USDC in Stock Token Vault to partially fill their order
-- Order is placed with our RWA partner network to sell RWA Tokens from the Stock Token Vault in order to a) Top up USDC reserves in the Stock Token Vault to the desired ratio and b) Fulfill the residual balance of users order
-- User automatically receives their USDC
-- Vault rebalances to the 90:10 ratio
+### Multi-Chain Smart Accounts
 
-Key Components:
+Deploy and manage smart contract wallets across 6 EVM chains: Ethereum, Polygon, Base, Gnosis, Plume, and Injective. Account abstraction (ERC-4337) enables gasless, sponsored transactions with social login onboarding -- no seed phrases, no gas tokens, no complexity.
 
-- Non Custodial Platform: Through simple social logins, users can seamlessly create a non-custodial Joinn Smart Account
-- Non Discretionary Platform: User always has discretion over there investments and know exactly what they are investing in.
-- Users go through KYC/AML checks in order to access Joinns RWA products.
-- The first time a User connects to the platform they receive an Account Abstraction Account (smart contract wallet) unique to only them in order to provide a semaless user experience with gasless transactions and session tokens (User Account). 
-- Only the User has access to their Joinn Smart Account
-- Stock Token Vault: Maintains the 90:10 ratio of assets
-- Smart Contracts: Manage the automated processes of the protocol by buying/selling and maintaining vault asset ratios.
-- The system is designed to maintain liquidity while offering exposure to Tokenized RWA’s, with USDC serving as the liquid portion of the reserve structure.
+### RWA Investment Products
+
+Access tokenized real-world assets through a unified interface:
+
+| Asset | Type | Chain |
+|-------|------|-------|
+| PAXG | Physical Gold | Ethereum, Polygon |
+| deJAAA | Corporate Credit CLO | Base |
+| syrupUSDC | Maple Finance Yield | Base |
+| cUSDO | OpenEden Staking | Ethereum |
+
+**Nest Protocol Institutional Vaults** on Plume Network provide access to 8 additional RWA strategies:
+
+| Vault | Strategy |
+|-------|----------|
+| nTBILL | US Treasury Bills |
+| nALPHA | Diversified RWA Portfolio |
+| nBASIS | Money Market Instruments |
+| nINSTO | Institutional Fixed Income |
+| nWISDOM | Private Credit |
+| nOPAL | Credit Card Receivables |
+| nMNRL | Oil & Gas Royalties |
+| inALPHA | Alpha Vault LP |
+
+### Joinn Pay VISA Card
+
+Virtual and physical VISA cards funded from any supported chain. Spend in EUR, GBP, or USD stablecoins with full card management:
+
+- Freeze/unfreeze cards
+- Configurable daily and monthly spending limits
+- Card replacement
+- IBAN/BIC banking details via Monerium for inbound transfers
+- Transaction history and spending analytics
+
+### AI Trading Agent
+
+Conversational trading interface which a execute trades, fund your card, and explore investment products using natural language:
+
+- *"Buy 100 PAXG"*
+- *"Deposit 500 USDC to my card"*
+- *"Tell me about nTBILL"*
+
+The agent handles cross-chain bridging, DEX routing, and execution autonomously with a confirmation step before every trade.
+
+## Current Supported Chains
+
+| Chain | ID | Smart Accounts | Swapping | Bridging |
+|-------|----|:-:|:-:|:-:|
+| Ethereum | 1 | ✓ | ✓ | ✓ |
+| Polygon | 137 | ✓ | ✓ | ✓ |
+| Base | 8453 | ✓ | ✓ | ✓ |
+| Gnosis | 100 | ✓ | -- | ✓ |
+| Plume | 98866 | ✓ | -- | ✓ |
+| Injective | 1776 | ✓ | ✓ | ✓ |
+
+## Security
+
+- **Non-custodial** -- All wallets are ERC-4337 smart contract accounts owned solely by the user
+- **SIWE Authentication** -- Sign-In With Ethereum with EIP-712 typed data signing
+- **KYC/AML Compliance** -- Identity verification gating for VISA product access
+- **Geo-blocking** -- IP geolocation enforcement for sanctioned regions
+- **Session Management** -- Cross-tab synchronization with automatic token refresh
+
+## Roadmap
+
+- **Stock Token Vault** -- Automated vault maintaining target ratios of RWAs to stablecoin reserves with automated rebalancing strategies
+- **Property-Backed Digital Credit** -- Unlock property equity through integration with banking partners
+
+See the [Yield-Fi organization profile](https://github.com/Yield-Fi) for the broader platform vision.
+
+## License
+
+Proprietary. All rights reserved.
